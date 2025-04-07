@@ -1,10 +1,9 @@
-package Transaction_Cheques_and_Savings;
+package Basic;
 
 import com.jagacy.util.JagacyException;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import org.sikuli.script.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class TransactionsMain
+public class BasicMain
 {
   /*  private String userData;
     private String dataUsage;
@@ -55,7 +54,7 @@ public class TransactionsMain
     public static void main(String[] args) throws IOException, JagacyException, InterruptedException, AWTException {
 
         //String filePath = "C:\\Automation\\datasheet\\TransactionsSheets.xlsx";
-        String filePath = System.getProperty("user.dir")+"\\Data_File\\Transaction_Cheques_and_Savings_Excel\\TransactionsSheets.xlsx";
+        String filePath = System.getProperty("user.dir")+"\\Data_File\\Basic_Excel\\BasicSheets.xlsx";
         ReportFolder.ReportDirectory();
 
          String userData;
@@ -144,7 +143,7 @@ public class TransactionsMain
 
                 if(runStatus.equalsIgnoreCase("RUN"))
                 {
-               //    System.setProperty("sessionA.window", "true");
+                 //  System.setProperty("sessionA.window", "true");
                     jc = new TransactionsJagacy();
                     jc.open();
 
@@ -157,10 +156,10 @@ public class TransactionsMain
                         test = extent.startTest("MainFrame Transactions: ", "Test Case Scenarios");
                         test.assignAuthor("AUTHOR: Data Management Team");
                         test.assignCategory("Transactions:");
+
                         if(transactionType.equalsIgnoreCase("bas")){
                             message = jc.basicEnqury(userData, transactionType, accountNo.trim(), amount, transactionNo).trim();
 
-                            System.out.println(y + " Basic Message: " + message + " : Account No: " + accountNo);
                             if(message.equalsIgnoreCase("NUMBER INCORRECT / NOT ON FILE"))
                             {
                                 test.log(LogStatus.INFO, message);
@@ -168,7 +167,7 @@ public class TransactionsMain
                                 excel.WriteToCell("Fail","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //     capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(Basic.ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
 
                             }else{
 
@@ -177,11 +176,11 @@ public class TransactionsMain
                                 excel.WriteToCell("Pass","NO RUN",message,y,_RunStatus, _Results, _Comment);
                                 //   capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(Basic.ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
 
                             jc.close();
-                        }if(transactionType.equalsIgnoreCase("CD")) {
+                        }else if(transactionType.equalsIgnoreCase("CD")) {
 
                             message = jc.cashDeposit(userData, transactionType, accountNo.trim(), amount, transactionNo).trim();
 

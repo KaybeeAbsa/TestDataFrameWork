@@ -1,4 +1,4 @@
-package Personal_Loan.DN9;
+package Transaction;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,8 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class ReportFolder {
 
-    static String filePathReport = System.getProperty("user.dir")+"\\Reports\\Personal_Loan";
-
+   static String filePathReport = System.getProperty("user.dir")+"\\Reports";
    // static String PathName ="C:\\Reports";
     static String PathName = filePathReport;
     File htmlTemplateFile = new File("MyOwnReport.html");
@@ -23,15 +22,15 @@ public class ReportFolder {
         //check if the folder doesn't already exist on the file system.
         //If the folder already exists, do nothing, else create the folder.
         if (!rootReportFolder.exists()) {
-         //   LOGGER.info("creating directory: " + rootReportFolder);
+           // LOGGER.info("creating directory: " + rootReportFolder);
             try {
                 rootReportFolder.mkdir();
             } catch (Exception e) {
-           //     LOGGER.info("Failed to create directory" + rootReportFolder);
+             //   LOGGER.info("Failed to create directory" + rootReportFolder);
             }
         }
         // Root Test Suite Folder [Example : Home Loans.]
-        File testFolder = new File( rootReportFolder + File.separator +  "DM9");
+        File testFolder = new File( rootReportFolder + File.separator +  "Transaction1");
         if (!testFolder.exists()) {
             //LOGGER.info("Creating Site directory" + testFolder);
             testFolder.mkdir();

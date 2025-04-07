@@ -1,4 +1,4 @@
-package Transaction_Cheques_and_Savings;
+package Basic;
 
 import com.jagacy.Key;
 import com.jagacy.Session3270;
@@ -27,13 +27,13 @@ public class TransactionsJagacy extends Session3270
 
     public boolean userLogin(String username, String password) throws JagacyException {
        try{
-           waitForChange(1000);
+           waitForChange(10000);
            userIdRow = 22;
            userIdColumn = 26;
-           this.writePosition(userIdRow, userIdColumn, "IMSV");
+           this.writePosition(userIdRow, userIdColumn, "IMSS");
            this.writeKey(Key.ENTER);
 
-           this.waitForChange(1000);
+           this.waitForChange(10000);
            userIdRow = 14;
            userIdColumn = 10;
            this.writePosition(userIdRow, userIdColumn, username);
@@ -42,7 +42,7 @@ public class TransactionsJagacy extends Session3270
            userIdColumn = 11;
            this.writePosition(userIdRow, userIdColumn, password);
            this.writeKey(Key.ENTER);
-           this.waitForChange(1000);
+           this.waitForChange(30000);
 
            userIdRow =  23;
            userIdColumn = 22;
@@ -65,70 +65,6 @@ public class TransactionsJagacy extends Session3270
 
     }
 
-    public String basicEnqury(String userData, String transactionType, String accountNo, String amount, String transactionNo) throws JagacyException {
-
-        try{
-            this.waitForChange(1000);
-            userIdRow = 2;
-            userIdColumn = 2;
-            this.writePosition(userIdRow, userIdColumn, userData);
-            this.writeKey(Key.ENTER);
-            this.waitForChange(1000);
-
-            userIdRow = 0;
-            userIdColumn = 7;
-            this.writePosition(userIdRow, userIdColumn, transactionType);
-            this.writeKey(Key.ENTER);
-            this.waitForChange(1000);
-
-            userIdRow = 1;
-            userIdColumn = 25;
-            this.writePosition(userIdRow, userIdColumn, accountNo.trim());
-            this.writeKey(Key.ENTER);
-            this.waitForChange(1000);
-
-            userIdRow = 0;
-            userIdColumn = 12;
-            message = this.readPosition(userIdRow, userIdColumn, 32);
-
-            if (message.equalsIgnoreCase("NUMBER INCORRECT / NOT ON FILE")) {
-                this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                this.writeKey(Key.PA1);
-                this.waitForChange(1000);
-                this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                userIdRow = 0;userIdColumn = 0;
-                this.writePosition(userIdRow, userIdColumn, "/RCL");
-                this.writeKey(Key.ENTER);
-                this.waitForChange(1000);
-                return message;
-            } else {
-
-                userIdRow = 6;
-                userIdColumn = 1;
-                message = this.readPosition(userIdRow, userIdColumn, 25);
-                this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                this.writeKey(Key.PA1);
-                this.waitForChange(1000);
-                this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                userIdRow = 0;userIdColumn = 0;
-                this.writePosition(userIdRow, userIdColumn, "/RCL");
-                this.writeKey(Key.ENTER);
-                this.waitForChange(1000);
-
-                return message;
-
-            }
-        }catch(JagacyException j){
-            System.out.println("[INVALID POSITION ERROR] Protected field" + j.getException());
-            return "[KEYBOARD LOCKED ERROR] Keyboard is locked" ;
-        }
-
-    }
-
     //Cheque Deposit(QD)
     public String chequeDeposit(String userData, String transactionType, String accountNo, String amount, String transactionNo, String controllerID) throws JagacyException {
         this.waitForChange(1000);
@@ -136,7 +72,7 @@ public class TransactionsJagacy extends Session3270
         userIdColumn = 2;
         this.writePosition(userIdRow, userIdColumn, userData);
         this.writeKey(Key.ENTER);
-        this.waitForChange(1000);
+        this.waitForChange(30000);
 
         userIdRow = 2;
         userIdColumn = 25;
@@ -315,6 +251,53 @@ public class TransactionsJagacy extends Session3270
 
         //return message;
     }
+
+    //Cash Deposit(CD)
+    public String basicEnqury(String userData, String transactionType, String accountNo, String amount, String transactionNo) throws JagacyException {
+
+        try{
+            this.waitForChange(1000);
+            userIdRow = 2;
+            userIdColumn = 2;
+            this.writePosition(userIdRow, userIdColumn, userData);
+            this.writeKey(Key.ENTER);
+            this.waitForChange(1000);
+
+            userIdRow = 0;
+            userIdColumn = 7;
+            this.writePosition(userIdRow, userIdColumn, transactionType);
+            this.writeKey(Key.ENTER);
+            this.waitForChange(1000);
+
+            userIdRow = 1;
+            userIdColumn = 25;
+            this.writePosition(userIdRow, userIdColumn, accountNo.trim());
+            this.writeKey(Key.ENTER);
+            this.waitForChange(1000);
+
+            userIdRow = 0;
+            userIdColumn = 12;
+            message = this.readPosition(userIdRow, userIdColumn, 32);
+
+            if (message.equalsIgnoreCase("NUMBER INCORRECT / NOT ON FILE")) {
+                this.writeKey(Key.CLEAR);
+                return message;
+            } else {
+
+                userIdRow = 6;
+                userIdColumn = 1;
+                message = this.readPosition(userIdRow, userIdColumn, 25);
+                this.writeKey(Key.CLEAR);
+                return message;
+
+            }
+        }catch(JagacyException j){
+            System.out.println("[INVALID POSITION ERROR] Protected field" + j.getException());
+            return "[KEYBOARD LOCKED ERROR] Keyboard is locked" ;
+        }
+
+    }
+
 
     //Cash Deposit(CD)
     public String cashDeposit(String userData, String transactionType, String accountNo, String amount, String transactionNo) throws JagacyException {

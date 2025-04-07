@@ -9,8 +9,5 @@
         <module name="TestDataFrameWork" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="TestDataFrameWork" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

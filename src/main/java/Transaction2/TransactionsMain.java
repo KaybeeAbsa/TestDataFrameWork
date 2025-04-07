@@ -1,5 +1,8 @@
-package Transaction_Cheques_and_Savings;
+package Transaction2;
 
+import Transaction_Cheques_and_Savings.ExcelFunctions;
+import Transaction_Cheques_and_Savings.ReportFolder;
+import Transaction_Cheques_and_Savings.TransactionsJagacy;
 import com.jagacy.util.JagacyException;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -54,9 +57,9 @@ public class TransactionsMain
 
     public static void main(String[] args) throws IOException, JagacyException, InterruptedException, AWTException {
 
-        //String filePath = "C:\\Automation\\datasheet\\TransactionsSheets.xlsx";
-        String filePath = System.getProperty("user.dir")+"\\Data_File\\Transaction_Cheques_and_Savings_Excel\\TransactionsSheets.xlsx";
-        ReportFolder.ReportDirectory();
+        //String filePath = "C:\\Automation\\datasheet\\BasicSheets.xlsx";
+        String filePath = System.getProperty("user.dir")+"\\Data_File\\Transaction2_Excel\\TransactionsSheets2.xlsx";
+        Transaction_Cheques_and_Savings.ReportFolder.ReportDirectory();
 
          String userData;
          String dataUsage;
@@ -76,7 +79,7 @@ public class TransactionsMain
          boolean validTest = false;
 
          TransactionsJagacy jc = null;
-         ExcelFunctions excel;
+         Transaction_Cheques_and_Savings.ExcelFunctions excel;
 
         int _accountNO =0;
         int _transactionType =0;
@@ -102,9 +105,9 @@ public class TransactionsMain
 
         try {
 
-            extent = new ExtentReports(ReportFolder.fullReportPath, true);
-            ExcelFunctions.input_document = new FileInputStream(String.valueOf(new File(filePath)));
-            excel =  new ExcelFunctions();
+            extent = new ExtentReports(Transaction_Cheques_and_Savings.ReportFolder.fullReportPath, true);
+            Transaction_Cheques_and_Savings.ExcelFunctions.input_document = new FileInputStream(String.valueOf(new File(filePath)));
+            excel =  new Transaction_Cheques_and_Savings.ExcelFunctions();
 
             _accountNO = excel.columnsNames.indexOf("AccountNo");
             _transactionType =excel.columnsNames.indexOf("TransactionType");
@@ -125,7 +128,7 @@ public class TransactionsMain
 
             int reply = JOptionPane.showConfirmDialog(null, "Do you want to run Transactions...", "CBP Transactions...", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
-            for(int y = 1; y < ExcelFunctions.ScenarioCount; y++) {
+            for(int y = 1; y < Transaction_Cheques_and_Savings.ExcelFunctions.ScenarioCount; y++) {
 
                 transactionType = excel.ReadCell(y,_transactionType);
                 TransactionAmount1 = excel.ReadCell(y,_transactionAmount1);
@@ -193,7 +196,7 @@ public class TransactionsMain
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus, _Results,_Comment);
                            //     capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
 
                             }else{
 
@@ -202,7 +205,7 @@ public class TransactionsMain
                                 excel.WriteToCell("FAIL","NO RUN",message,y,_RunStatus, _Results, _Comment);
                              //   capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
 
                             jc.close();
@@ -219,7 +222,7 @@ public class TransactionsMain
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                // capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }else{
 
                                 test.log(LogStatus.INFO, message);
@@ -227,7 +230,7 @@ public class TransactionsMain
                                 excel.WriteToCell("FAIL","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
                             jc.close();
                         }else if(transactionType.equalsIgnoreCase("MD")) {
@@ -241,7 +244,7 @@ public class TransactionsMain
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }else{
 
                                 test.log(LogStatus.INFO, message);
@@ -260,7 +263,7 @@ public class TransactionsMain
                                 test.log(LogStatus.PASS, "Cheque Deposit");
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus,_Results,_Comment);
                             }else{
                                 test.log(LogStatus.INFO, message);
@@ -268,7 +271,7 @@ public class TransactionsMain
                                 excel.WriteToCell("FAIL","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
 
                             jc.close();
@@ -284,14 +287,14 @@ public class TransactionsMain
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }else{
                                 test.log(LogStatus.INFO, message);
                                 test.log(LogStatus.FAIL, "Cheque Payment");
                                 excel.WriteToCell("FAIL","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
                             jc.close();
                         }else if(transactionType.equalsIgnoreCase("CWC")) {
@@ -306,14 +309,14 @@ public class TransactionsMain
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }else{
                                 test.log(LogStatus.INFO, message);
                                 test.log(LogStatus.FAIL, "Cash Withdrawal Close");
                                 excel.WriteToCell("FAIL","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
 
                             jc.close();
@@ -328,14 +331,14 @@ public class TransactionsMain
                                 excel.WriteToCell("PASS","NO RUN",message,y,_RunStatus, _Results,_Comment);
                               //  capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }else{
                                 test.log(LogStatus.INFO, message);
                                 test.log(LogStatus.FAIL, "Cash Deposit Close");
                                 excel.WriteToCell("FAIL","NO RUN",message,y,_RunStatus, _Results,_Comment);
                                 //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                                 String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                                test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                                test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                             }
 
                             jc.close();
@@ -347,7 +350,7 @@ public class TransactionsMain
                         excel.WriteToCell("FAIL","NO RUN","Invalid User Credintials...",y,_RunStatus, _Results,_Comment);
                         //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath,"Screen");
                         String screenshotName =  capture.split("\\\\")[capture.split("\\\\").length - 1];
-                        test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath+File.separator+screenshotName));
+                        test.log(LogStatus.INFO, test.addScreenCapture(Transaction_Cheques_and_Savings.ReportFolder.screenshortReportPath+File.separator+screenshotName));
                         jc.close();
                     }
                 }else
@@ -386,7 +389,7 @@ public class TransactionsMain
    /* @Test
     public void TestMain() throws JagacyException, InterruptedException, IOException {
 
-        String filePath = System.getProperty("user.dir")+"\\src\\main\\java\\datasheet\\TransactionsSheets.xlsx";
+        String filePath = System.getProperty("user.dir")+"\\src\\main\\java\\datasheet\\BasicSheets.xlsx";
         ReportFolder.ReportDirectory();
 
         try {

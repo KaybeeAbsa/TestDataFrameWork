@@ -1,4 +1,4 @@
-package Transaction_Cheques_and_Savings;
+package Transaction;
 
 import com.jagacy.Key;
 import com.jagacy.Session3270;
@@ -93,15 +93,6 @@ public class TransactionsJagacy extends Session3270
 
             if (message.equalsIgnoreCase("NUMBER INCORRECT / NOT ON FILE")) {
                 this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                this.writeKey(Key.PA1);
-                this.waitForChange(1000);
-                this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                userIdRow = 0;userIdColumn = 0;
-                this.writePosition(userIdRow, userIdColumn, "/RCL");
-                this.writeKey(Key.ENTER);
-                this.waitForChange(1000);
                 return message;
             } else {
 
@@ -109,15 +100,6 @@ public class TransactionsJagacy extends Session3270
                 userIdColumn = 1;
                 message = this.readPosition(userIdRow, userIdColumn, 25);
                 this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                this.writeKey(Key.PA1);
-                this.waitForChange(1000);
-                this.writeKey(Key.CLEAR);
-                this.waitForChange(1000);
-                userIdRow = 0;userIdColumn = 0;
-                this.writePosition(userIdRow, userIdColumn, "/RCL");
-                this.writeKey(Key.ENTER);
-                this.waitForChange(1000);
 
                 return message;
 

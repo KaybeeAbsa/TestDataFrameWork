@@ -44,7 +44,7 @@ public class CustomerProfileMain {
 
     static ExtentReports extent =  null;
     static ExtentTest test = null;
-    private Screen sikuliScreen = new Screen(0);
+//    private Screen sikuliScreen = new Screen(0);
     private String capture= "";
 
     @Test
@@ -87,7 +87,7 @@ public class CustomerProfileMain {
                 {
 
                     //Passing Jagacy Properties and Opening
-                 // System.setProperty("sessionA.window", "true");
+//                    System.setProperty("sessionA.window", "true");
                     debitOrderJagacy  = new CustomerProfileJagacy();
                     debitOrderJagacy.open();
 
@@ -111,7 +111,7 @@ public class CustomerProfileMain {
                                     test.log(LogStatus.INFO, message);
                                     test.log(LogStatus.FAIL, "Client Profile  ");
                                     excel.WriteToCell("RUN", "Client Code Not Found", "Not Found", "Linked Account Not Found", "FAIL", y, RunStatus_, Client_code_, aul_registered_, linked_Accounts_, results_);
-                                    capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath, "Screen");
+                                  //  capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath, "Screen");
                                     String screenshotName = capture.split("\\\\")[capture.split("\\\\").length - 1];
                                     test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath + File.separator + screenshotName));
                                     debitOrderJagacy.close();
@@ -126,7 +126,7 @@ public class CustomerProfileMain {
                                     test.log(LogStatus.INFO, "Client Profile ");
                                     test.log(LogStatus.PASS, "Client Profile ");
                                     excel.WriteToCell("NO RUN", clientProfile, message, linkedAccounts.toString(), "PASS", y, RunStatus_, Client_code_, aul_registered_, linked_Accounts_, results_);
-                                    capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath, "Screen");
+                                    //capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath, "Screen");
                                     String screenshotName = capture.split("\\\\")[capture.split("\\\\").length - 1];
                                     test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath + File.separator + screenshotName));
                                     debitOrderJagacy.close();
@@ -141,7 +141,7 @@ public class CustomerProfileMain {
                                 test.log(LogStatus.INFO, "Client Profile ");
                                 test.log(LogStatus.PASS, "Client Profile ");
                                 excel.WriteToCell("NO RUN", clientCode, message, linkedAccounts.toString(), "PASS", y, RunStatus_, Client_code_, aul_registered_, linked_Accounts_, results_);
-                                capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath, "Screen");
+                             //   capture = sikuliScreen.saveScreenCapture(ReportFolder.screenshortReportPath, "Screen");
                                 String screenshotName = capture.split("\\\\")[capture.split("\\\\").length - 1];
                                 test.log(LogStatus.INFO, test.addScreenCapture(ReportFolder.screenshortReportPath + File.separator + screenshotName));
                                 debitOrderJagacy.close();
